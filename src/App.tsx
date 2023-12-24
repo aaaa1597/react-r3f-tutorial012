@@ -2,9 +2,15 @@ import React, {useRef} from 'react';
 import './App.css';
 import { Canvas, useFrame, MeshProps  } from '@react-three/fiber'
 import * as THREE from 'three'
-import { OrbitControls } from '@react-three/drei'
+import { Stats, OrbitControls } from '@react-three/drei'
+import { useControls } from 'leva'
 
-const Box = (props: MeshProps) => {
+type BoxProps = {
+  props: MeshProps;
+  wireframe?: boolean;
+}
+
+const Box = (boxprops: BoxProps) => {
   const ref = useRef<THREE.Mesh>(null!)
 
   useFrame((_, delta) => {
@@ -14,7 +20,7 @@ const Box = (props: MeshProps) => {
   })
 
   return (
-    <mesh {...props} ref={ref}>
+    <mesh {...boxprops.props} ref={ref}>
       <boxGeometry />
       <meshBasicMaterial color={0x00ff00} wireframe />
     </mesh>
@@ -27,10 +33,14 @@ const App = () => {
       <Canvas camera={{ position: [3, 1, 2] }}>
         <ambientLight />
         <directionalLight />
-        <Box position={[-0.75, 0, 0]} name="A" />
-        <Box position={[0.75, 0, 0]} name="B" />
+        <Box props={{position:[-0.75, 0, 0], name:"A", material: new THREE.MeshBasicMaterial()}}/>
+        <Box props={{position:[ 0.75, 0, 0], name:"B", material: new THREE.MeshNormalMaterial()}}/>
+        <Box props={{position:[-0.75, 2, 0], name:"C", material: new THREE.MeshPhongMaterial()}}/>
+        <Box props={{position:[ 0.75, 2, 0], name:"D", material: new THREE.MeshStandardMaterial()}}/>
         <OrbitControls />
-        <gridHelper rotation={[Math.PI / 4, 0, 0]} />
+        <axesHelper args={[5]} />
+        <gridHelper />
+        <Stats />
       </Canvas>
     </div>
   );
