@@ -1,8 +1,8 @@
 import React, {useRef} from 'react';
 import './App.css';
-import { Canvas, useFrame, MeshProps  } from '@react-three/fiber'
+import { Canvas, useFrame, MeshProps } from '@react-three/fiber'
 import * as THREE from 'three'
-import { OrbitControls } from '@react-three/drei'
+import { Stats, OrbitControls } from '@react-three/drei'
 
 const Box = (props: MeshProps) => {
   const ref = useRef<THREE.Mesh>(null!)
@@ -28,9 +28,13 @@ const App = () => {
         <ambientLight />
         <directionalLight />
         <Box position={[-0.75, 0, 0]} name="A" />
-        <Box position={[0.75, 0, 0]} name="B" />
+        <Box position={[ 0.75, 0, 0]} name="B" />
+        <Box position={[-0.75, 2, 0]} name="C" />
+        <Box position={[ 0.75, 2, 0]} name="D" />
         <OrbitControls />
-        <gridHelper rotation={[Math.PI / 4, 0, 0]} />
+        <axesHelper args={[5]} />
+        <gridHelper />
+        <Stats />
       </Canvas>
     </div>
   );
