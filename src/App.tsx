@@ -50,7 +50,6 @@ const Box = (boxprops: BoxProps) => {
   return (
     <mesh {...boxprops.props} ref={ref}>
       <boxGeometry />
-      <meshBasicMaterial color={0x00ff00} wireframe />
     </mesh>
   )
 }
