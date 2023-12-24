@@ -34,10 +34,17 @@ const Box = (boxprops: BoxProps) => {
     },
     flatShading: {
       value: true,
-      // onChange: (v) => {
-      //   // ref.current.material.flatShading = v
-      //   // ref.current.material.needsUpdate = true
-      // },
+      onChange: (v: boolean) => {
+        if(boxprops.props.name == "meshBasicMaterial")
+          {/* (ref.current.material as THREE.MeshBasicMaterial)!.flatShading  = v*/}
+        else if(boxprops.props.name == "meshNormalMaterial")
+          (ref.current.material as THREE.MeshNormalMaterial)!.flatShading  = v;
+        else if(boxprops.props.name == "meshPhongMaterial")
+          (ref.current.material as THREE.MeshPhongMaterial)!.flatShading  = v;
+        else if(boxprops.props.name == "meshStandardMaterial")
+          (ref.current.material as THREE.MeshStandardMaterial)!.flatShading = v;
+        (ref.current.material as THREE.MeshBasicMaterial)!.needsUpdate  = true;
+      },
     },
     color: {
       value: 'lime',
@@ -49,7 +56,7 @@ const Box = (boxprops: BoxProps) => {
 
   return (
     <mesh {...boxprops.props} ref={ref}>
-      <boxGeometry />
+      <icosahedronGeometry args={[1, 1]} />
     </mesh>
   )
 }
