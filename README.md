@@ -4,7 +4,9 @@ React+TypeScriptなWebアプリで、R3Fのtutorial12。(Materials編)
 ![](https://storage.googleapis.com/zenn-user-upload/df15e25fee3b-20231224.png)
 ​
 # まとめ
-特段、理解のムズいとこはなかったけど、TypeScriptに置き換えると、ホントにビルドが通らんかったのが苦しかった。
+特段、理解のムズいとこはなかったけど...<br />
+TypeScriptに置き換えると、ホントにビルドが通らんかったのが苦しかった。
+
 ## type BoxPropsを作成した
 元のHPでは、wireframeプロパティを普通に使ってるけど、TypeScriptだと通らん。
 BoxPropsを作って、MeshPropsをラップした。
